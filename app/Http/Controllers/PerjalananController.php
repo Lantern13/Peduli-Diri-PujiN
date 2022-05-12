@@ -159,8 +159,8 @@ class PerjalananController extends Controller
         // }
         else {
             $data = DB::table('perjalanan_models')
-                ->join('users', 'users.id', '=', 'perjalanan_models.id_user')
-                ->select('users.nik', 'perjalanan_models.tanggal', 'perjalanan_models.waktu', 'perjalanan_models.lokasi', 'perjalanan_models.suhu')
+                ->join('users', 'users.id', '=', 'perjalanan_models.user_id')
+                ->select('users.nik','users.id','perjalanan_models.tanggal', 'perjalanan_models.waktu', 'perjalanan_models.lokasi', 'perjalanan_models.suhu')
                 ->where('users.nama', '=', auth()->user()->nama)
                 ->paginate(10);
             return view('pages.perjalanan', ['data' => $data]);
